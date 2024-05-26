@@ -6,9 +6,9 @@ router.post('/,', taskController.createTask);
 
 router.get('/', taskController.getTask);
 
-router.put('/:id', taskController.put);
+router.put('/:id', taskController.update);
 
-router.delete('/:id', taskController.delete);
+router.delete('/:id', taskController.taskDelete);
 
 
 // router.put('/:id', (req,res) => {

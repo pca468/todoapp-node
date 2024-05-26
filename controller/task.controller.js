@@ -9,7 +9,7 @@ taskController.createTask = async (req, res) => {
     await newTask.save();
     res.status(200).json({ status: "ok", data: newTask });
   } catch (err) {
-    res.status(400).json({status:'fail',error: err});
+    res.status(400).json({ status:'fail', error: err });
   }
 };
 
@@ -22,7 +22,7 @@ taskController.getTask = async (req,res) => {
     }
 };
 
-taskController.put = async (req,res) => {
+taskController.update = async (req,res) => {
     try{
         const taskPut = await Task.put({})
         res.status(200).json({status: "ok", data : taskPut});
@@ -31,7 +31,7 @@ taskController.put = async (req,res) => {
     }
 };
 
-taskController.delete = async (req,res) => {
+taskController.taskDelete = async (req,res) => {
     try{
         const taskDelete = await Task.delete({})
         res.status(200).json({status: "ok", data : taskDelete})

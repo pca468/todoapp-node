@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const taskSchema = Schema({
     task:{
         type:String,
-        require:true
+        required:true
     },
     isComplete:{
         type:Boolean,
