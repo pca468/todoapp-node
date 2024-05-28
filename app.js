@@ -1,21 +1,27 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require('cors') 
-const bodyParser = require("body-parser");
-const indexRouter = require("./routes/index")
+const bodyParser = require("body-parser"); // body를 object 형태로 바로 바꿔주는 라이브러리
+const indexRouter = require("./routes/index") // router 가져오기
 require('dotenv').config()
 
 const app = express();
 const MONGODB_URI_PROD = process.env.MONGODB_URI_PROD
-console.log("mogoouri", MONGODB_URI_PROD)
+//console.log("mogoouri", MONGODB_URI_PROD)
 app.use(bodyParser.json());
 app.use(cors());
-app.use("/api",indexRouter);
+app.use("/api",indexRouter); // indexRouter 사용할 수 있도록 설정
 
-const mongoURI = 'mongodb://localhost:27017/todo-demo';
+const mongoURI = MONGODB_URI_PROD;
 
-mongoose
-  .connect(mongoURI, {})
+// restful API => 주소 + http 명령어
+// 1. 할 일을 추가할 수 있다. C /tasks post
+// 2. 할 일 리스트를 볼 수 있다. R /tasks get
+// 3. 할 일에 대해서 끝남 안끝남 표시를 할 수 있다. U /tasks/:id put id => 어떤 할 일? id 값 붙여주기
+// 4. 할 일을 삭제할 수 있다. D /task/:id delete => 어떤걸 삭제할건데? id부여
+
+mongoose     //useNewUrlParser:true => node.js version 4.0.0 부터는 사용 안해도 됨
+  .connect(mongoURI, {}) // mongoose uri 옛주소, 현주소 모두 잘 사용할 수 있도록 도와줘..
   .then(() => {
     console.log("mongoose connected");
   })

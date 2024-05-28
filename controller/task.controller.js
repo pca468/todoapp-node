@@ -5,8 +5,8 @@ const taskController = {};
 taskController.createTask = async (req, res) => {
   try {
     const { task, isComplete } = req.body;
-    const newTask = new Task({ task, isComplete });
-    await newTask.save();
+    const newTask = new Task({ task, isComplete }); //Task 모델 불러오기
+    await newTask.save(); // 새로운 데이터 저장
     res.status(200).json({ status: "ok", data: newTask });
   } catch (err) {
     res.status(400).json({ status:'fail', error: err });

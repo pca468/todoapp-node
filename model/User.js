@@ -24,6 +24,8 @@ const userSchema = Schema(
 userSchema.methods.toJSON = function () { //toJSON  Object를 프론트엔드로 보낼 때 JSON을 사용
     const obj = this._doc   // this만 입력하면 모든 정보 다 나옴
     delete obj.password; // doc 안에 객체 중 password 빼기
+    delete obj.updatedAt;
+    delete obj.__v;
 
     return obj
 
